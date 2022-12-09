@@ -51,9 +51,7 @@ sealed interface RouteTemplate<A> {
     ): Pair<List<String>, Int> =
         inputs.fold(Pair(emptyList(), 1)) { (acc, index), component ->
             when (component) {
-                is Capture<*> ->
-                    Pair(acc + pathParamRendering(index, component), index + 1)
-
+                is Capture<*> -> Pair(acc + pathParamRendering(index, component), index + 1)
                 is Fixed -> Pair(acc + component.s, index)
                 else -> Pair(acc, index)
             }
