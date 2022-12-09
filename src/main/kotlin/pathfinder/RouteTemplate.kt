@@ -5,7 +5,7 @@ private val defaultRenderPathParam: (Int, RouteTemplate.Capture<*>) -> String = 
     pc.name?.let { name -> "{$name}" } ?: "{param$index}"
 }
 
-private val defaultRenderQueryParam: ((Int, RouteTemplate.Query<*>) -> String) = { _, q -> "${q.name}={${q.name}}" }
+private val defaultRenderQueryParam: (Int, RouteTemplate.Query<*>) -> String = { _, q -> "${q.name}={${q.name}}" }
 
 sealed interface RouteTemplate<A> {
 
