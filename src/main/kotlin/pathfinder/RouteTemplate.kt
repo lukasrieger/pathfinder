@@ -83,106 +83,50 @@ infix fun <A, B> RouteTemplate<A>.and(other: RouteTemplate<B>): RouteTemplate<Pa
 fun <A> RouteTemplate<Unit>.and(
     other: RouteTemplate<A>,
     @Suppress("UNUSED_PARAMETER") dummy: Unit = Unit
-): RouteTemplate<A> =
-    RouteTemplate.Sequence(this, other)
+): RouteTemplate<A> = RouteTemplate.Sequence(this, other)
 
 @JvmName("andRightUnit")
 fun <A> RouteTemplate<A>.and(
     other: RouteTemplate<Unit>,
     @Suppress("UNUSED_PARAMETER") dummy: Unit = Unit
-): RouteTemplate<A> =
-    RouteTemplate.Sequence(this, other)
+): RouteTemplate<A> = RouteTemplate.Sequence(this, other)
 
 @JvmName("andLeftRightUnit")
 fun RouteTemplate<Unit>.and(
     other: RouteTemplate<Unit>,
     @Suppress("UNUSED_PARAMETER") dummy: Unit = Unit
-): RouteTemplate<Unit> =
-    RouteTemplate.Sequence(this, other)
+): RouteTemplate<Unit> = RouteTemplate.Sequence(this, other)
 
 @JvmName("and2")
 infix fun <A, B, C> RouteTemplate<Pair<A, B>>.and(
     other: RouteTemplate<C>
-): RouteTemplate<Triple<A, B, C>> =
-    RouteTemplate.Sequence(
-        this,
-        other
-    )
+): RouteTemplate<Triple<A, B, C>> = RouteTemplate.Sequence(this, other)
 
 @JvmName("and2Pair")
 infix fun <A, B, C, D> RouteTemplate<Pair<A, B>>.and(
     other: RouteTemplate<Pair<C, D>>
-): RouteTemplate<Tuple4<A, B, C, D>> =
-    RouteTemplate.Sequence(
-        this,
-        other
-    )
+): RouteTemplate<Tuple4<A, B, C, D>> = RouteTemplate.Sequence(this, other)
 
 @JvmName("and2Unit")
 infix fun <A, B> RouteTemplate<Pair<A, B>>.and(
     other: RouteTemplate<Unit>
-): RouteTemplate<Pair<A, B>> =
-    RouteTemplate.Sequence(
-        this,
-        other
-    )
+): RouteTemplate<Pair<A, B>> = RouteTemplate.Sequence(this, other)
 
 @JvmName("and3")
 infix fun <A, B, C, D> RouteTemplate<Triple<A, B, C>>.and(
     other: RouteTemplate<D>
-): RouteTemplate<Tuple4<A, B, C, D>> =
-    RouteTemplate.Sequence(
-        this,
-        other
-    )
+): RouteTemplate<Tuple4<A, B, C, D>> = RouteTemplate.Sequence(this, other)
 
 @JvmName("and4")
 infix fun <A, B, C, D, E> RouteTemplate<Tuple4<A, B, C, D>>.and(
     other: RouteTemplate<E>
-): RouteTemplate<Tuple5<A, B, C, D, E>> =
-    RouteTemplate.Sequence(
-        this,
-        other
-    )
+): RouteTemplate<Tuple5<A, B, C, D, E>> = RouteTemplate.Sequence(this, other)
 
 @JvmName("and5")
 infix fun <A, B, C, D, E, F> RouteTemplate<Tuple5<A, B, C, D, E>>.and(
     other: RouteTemplate<F>
-): RouteTemplate<Tuple6<A, B, C, D, E, F>> =
-    RouteTemplate.Sequence(
-        this,
-        other
-    )
+): RouteTemplate<Tuple6<A, B, C, D, E, F>> = RouteTemplate.Sequence(this, other)
 
-sealed interface Route {
-
-    val template: RouteTemplate<*>
-
-    class Route1<A>(
-        override val template: RouteTemplate<A>,
-        val handler: (A) -> Unit
-    ) : Route
-
-    class Route2<A, B>(
-        override val template: RouteTemplate<Pair<A, B>>,
-        val handler: (A, B) -> Unit
-    ) : Route
-
-    class Route3<A, B, C>(
-        override val template: RouteTemplate<Triple<A, B, C>>,
-        val handler: (A, B, C) -> Unit
-    ) : Route
-
-    class Route4<A, B, C, D>(
-        override val template: RouteTemplate<Tuple4<A, B, C, D>>,
-        val handler: (A, B, C, D) -> Unit
-    ) : Route
-
-    class Route5<A, B, C, D, E>(
-        override val template: RouteTemplate<Tuple5<A, B, C, D, E>>,
-        val handler: (A, B, C, D, E) -> Unit
-    ) : Route
-}
 
 infix fun <A> RouteTemplate<A>.handle1(handler: (A) -> Unit): Route.Route1<A> =
     Route.Route1(this, handler)
