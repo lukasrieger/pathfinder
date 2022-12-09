@@ -1,0 +1,14 @@
+[versions]
+kotlin = "1.7.21"
+spotless = "6.11.0"
+json = "1.4.1"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "json" }
+
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
