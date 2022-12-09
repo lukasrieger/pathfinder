@@ -128,7 +128,7 @@ infix fun <A, B, C, D, E, F> RouteTemplate<Tuple5<A, B, C, D, E>>.and(
 ): RouteTemplate<Tuple6<A, B, C, D, E, F>> = RouteTemplate.Sequence(this, other)
 
 
-infix fun <A> RouteTemplate<A>.handle1(handler: (A) -> Unit): Route.Route1<A> =
+infix fun <A> RouteTemplate<A>.handle(handler: (A) -> Unit): Route.Route1<A> =
     Route.Route1(this, handler)
 
 infix fun <A, B> RouteTemplate<Pair<A, B>>.handle(handler: (A, B) -> Unit): Route.Route2<A, B> =
